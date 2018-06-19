@@ -7,13 +7,14 @@ h = ???;  //Specific Heat (Kj/Mol)
 r= ?;  //ratio of exhaust gases and their constant(function of molar weight)
 tc= 3182.027; //Combustion Chamber Temp (K)
 pc = 10; //Combustion Chamber Presure (bar)
-Vc
+vcc = ??? //Combustion Chamber Volume (L)
 f = 32323 //thrust required
 pa = 10; //ambiant presure
+n = 23; //Number of moles from combustion product
 
 //---CALCULATIONS---
 cstar = sqrt(r*tc / h * (h +1)/2**(h +1 / 2 * (h-1)));
-pe = (n * R / v);  //exhaust presure
+pe = (n * 0.08205 / vcc) * tc;  //exhaust presure - assumes ideal gas constant
 //throat
 tt = tc * (2/H+1); //temp
 pt = pc * (2/H+1) ** (H/(H-1)); //presure
