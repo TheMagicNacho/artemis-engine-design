@@ -5,8 +5,8 @@
 
 //---VARIABLES---
 h = -4093.638;  //Specific Heat (Kj/Mol) AKA Enthalpy
-r= 3.852;  //ratio of exhaust gases and their constant (function of molar weight)
-tc= 3182.027; //Combustion Chamber Temp (K)
+r = 3.852;  //ratio of exhaust gases and their constant (function of molar weight)
+tc = 3182.027; //Combustion Chamber Temp (K)
 pc = 10; //Combustion Chamber Presure (bar)
 vcc = 2; //Combustion Chamber Volume (L)
 f = 32323; //thrust required
@@ -22,16 +22,18 @@ pt = pc * (2/h+1) ** (h/(h-1)); //presure
 dt = pt / (r*tt);  //density
 vt = sqrt(h*r*tt); //Velocity
 //exhaust
-me = sqrt((2 / h-1) * ((pc/pe)^((h-1)/h) /1) );  //Mach Number 
-te = tc / (1+((h-1)/2)*me^2);  //Temp
+me = sqrt((2 / h-1) * ((pc/pe)^((h-1)/h) /1) );  //Mach Number at exhaust
+te = tc / (1+((h-1)/2)*me^2);  //,Temp
 de = pe / (r*te);  //desnsity
 
 //coefficents
-aco = (1/me) * ((2/(h+1)) * (1+ ((h-1)/2) * me^2))^((h+1)/2(h-1));
+//aco  = (((2/(r+1)) * (1+ ((r-1)/2) * me^2))^((r+1)/2(r-1)))*(1/me) ;
+aco = ((1 + me^2 * (r-1)/2)^((r+1)/(r-1)/2))*(((r+1)/2)^-((r+1)/(r-1)/2)) / me;
 
-cf = h * sqrt(((2/h+1)^((h+1)/(h-1))) * (2/(h-1)) * (1-(pe /pc)^((h-1)/h)) + ((pe-pa)/pc) * aco);
+
+cf = h * sqrt(((2/h+1)^((h+1)/(h-1))) * (2/(h-1)) * (1-(pe /pc)^((h-1)/h))) + ((pe-pa)/pc) * aco;
+
 //finals
 c = cf * cstar;
 at = f/(cf * pc);
 mdot = (pc * at) / cstar;
-
