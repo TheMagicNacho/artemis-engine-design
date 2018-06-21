@@ -6,11 +6,11 @@
 
 //---VARIABLES---
 h = 4093.638;  //Specific Heat (Kj/Mol) AKA Enthalpy
-r = 3.852; //ratio of exhaust gases and their constant (function of molar weight)3.852
+r = 3.852; //ratio of exhaust gases and their constant (function of molar weight) 3.852
 tc = 3182.027; //Combustion Chamber Temp (K)
 pc = 10; //Combustion Chamber Presure (bar)
-vcc = 2; //Combustion Chamber Volume (L)
-f = 2; //thrust required
+vcc = 2; //Combustion Chamber Volume  (L)
+f = 5; //thrust required
 pa = 10; //ambiant presure
 n = 23; //Number of moles from combustion product
 
@@ -30,16 +30,19 @@ at = f / (mt * dt);
 //coefficents
 //aco  = (((2/(r+1)) * (1+ ((r-1)/2) * me^2))^((r+1)/2(r-1)))*(1/me) ;
 aco = ((1 + m^2 * (r-1)/2)^((r+1)/(r-1)/2))*(((r+1)/2)**-((r+1)/(r-1)/2)) / m;
-//cf = h * sqrt(((2/h+1)^((h+1)/(h-1))) * (2/(h-1)) * (1-(pe /pc)^((h-1)/h))) + ((pe-pa)/pc) * aco; // DONT THINK I NEED THIS VARIABLE
 
+cf = h * sqrt(((2/h+1)^((h+1)/(h-1))) * (2/(h-1)) * (1-(pe /pc)^((h-1)/h))) + ((pe-pa)/pc) * aco; // DONT THINK I NEED THIS VARIABLE
 
 //exhaust
 ae = at * sqrt(aco); // area of exhaust diameter (MM)
 
-me = sqrt((2 / (h-1)) * ((pc/pe)^((h-1)/h) /1) );  //Mach Number at exhaust
 te = tc / (1+((h-1)/2)*me^2);  //,Temp
+
 de = pe / (r*te);  //desnsity
 
+ve = cstar * cf; // exhaust velocity (m/s)
+
+me = ve / 295.26992; // exhaust mach number - assumes speed of sound is 295.26992 at stratosphere
 
 //finals
 c = cf * cstar;
@@ -59,10 +62,10 @@ disp("MACH SPEED THROAT")
 disp(mt)
 
 disp("MACH SPEED EXHAUST")
-disp("not defined")
+disp(me)
 
 disp("DELTA MACH")
-disp("not defined")
+disp(me-mt)
 
 disp("MASS FLOW RATE")
 disp(mdot)
