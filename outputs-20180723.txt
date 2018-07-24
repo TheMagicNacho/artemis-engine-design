@@ -1,0 +1,25 @@
+!!G I V E N S!!
+Specific Heat {Kj/Mol}:  4686.79
+Combustion Chamber Temp {K}:  673.504
+
+ -----
+
+ !!E S T I M A T E D!!
+
+Combustion Chamber Presure {bar}: 25
+Combustion Chamber Volume  {L}:  2.
+Ambiant Pressures {bar}:  10.
+
+ -----
+
+ !!C A L C U L A T E D!!
+
+AREA THROAT {mm}:  4799.4635
+PRESSURE EXHAUST {bar}:  6355.0154
+AREA EXHAUST {mm}:  13395.712
+MACH SPEED THROAT:  0.0564844
+EXHAUST VELOCITY {m/sec}:  1423.154 + 488.89185i
+MACH SPEED EXHAUST:  4.8198408 + 1.6557455i
+MASS FLOW RATE {kg/s}:  132.80198
+SPECIFIC IMPULSE {sec}:  145.12132 + 49.853095i
+AVG. OPERATING TEMPS {K}:  673.6477

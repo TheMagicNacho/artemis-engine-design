@@ -1,41 +1,18 @@
-# ---NOTES---
-# Dt = Density of Gas at Throat
-#  Acof = Area of Exhaust / Area of Throat
-#  Reff.  Development of Hydrogen Peroxide Monopropellant Rocket  by Cervone et al
 import math
 
-#---DEFINE VARIABLES---
-#Specific Heat (Kj/Mol) AKA Enthalpy
-h = -4093.638
-#ratio of exhaust gases and their constant (function of molar weight)3.852
-r = 3.852
-#Combustion Chamber Temp (K)
-tc = 3182.027
-#Combustion Chamber Presure (bar)
-pc = 10
-#Combustion Chamber Volume (L)
-vcc = 2
-#thrust required (N)
-f = 5
-#ambiant presure (BAR)
-pa = 10
-#Number of moles from combustion product
-n = 23
+h = 4686.79  #Specific Heat (Kj/Mol) AKA Enthalpy
+tc = 673.504 #Combustion Chamber Temp (K) - derived from abdatic
+pc = 25 #Combustion Chamber Presure (bar) - based on research from S. Krishnan1*, Ahn Sang-Hee2, Lee Choong-Won2
+vcc = 2 #Combustion Chamber Volume  (L) - guessed size of rocket
+f = 1961.33 # in N
+pa = 10 #ambiant presure - estimated combustion of
+n = 230 #Number of moles from combustion product
 
 
-#---CALCULATE---
-#Specific heat ratio (Might be 903.5)
-cstar = math.sqrt(r*tc / h * (h +1.0)/2.0**(h +1.0 / 2.0 * (h-1.0)))
 
-
-#THRUST CALCULATE
-
-#RATIO & COEFFICENTS
-
-#EXHAUST CALCULATE
-
-#---OUTPUTS---
-
-
-#---PRINT--- mdot / mach number / impulse / throat diamiter / givens
-print(cstar)
+print("USER DEFINED VARIABLES")
+print "Specific Heat:", h
+print "Combustion Chamber Tem (k):", tc
+print "Combustio Chamber Pressure (bar):", pc
+print "Combustion Chamber Volume (l):", vcc
+print "Ambiant Pressure:", pa

@@ -6,16 +6,16 @@
 // assumes an hydrogen peroxide & heximine combustion
 
 //---VARIABLES---
-h = 4093.638;  //Specific Heat (Kj/Mol) AKA Enthalpy
-tc = 3182.027; //Combustion Chamber Temp (K) - derived from abdatic 
+h = 4686.79;  //Specific Heat (Kj/Mol) AKA Enthalpy
+tc = 673.504; //Combustion Chamber Temp (K) - derived from abdatic 
 pc = 25; //Combustion Chamber Presure (bar) - based on research from S. Krishnan1*, Ahn Sang-Hee2, Lee Choong-Won2
-vcc = 2; //Combustion Chamber Volume  (L)
-f = 2; //thrust required (N)
-pa = 10; //ambiant presure
+vcc = 2; //Combustion Chamber Volume  (L) - guessed size of rocket
+f = 2; //thrust required (N) - derived to lift 2 kg
+pa = 10; //ambiant presure - estimated combustion of 
 n = 230; //Number of moles from combustion product
 
 //---CALCULATIONS---
-cstar = 903.5;
+cstar = 903.5; //constant of compressability
 pe = (n * 0.08205 / vcc) * tc;  //exhaust presure - assumes ideal gas constant
 r = h / (tc+258); //specific heat ratio
 
@@ -45,27 +45,48 @@ mdot = (pc * at) / cstar;
 
 me = ve / 295.26992; // exhaust mach number - assumes speed of sound is 295.26992 at stratosphere
 
-isp = ve / 9.80665; // specific impulse - asume gravity 9.8 m/s
+//isp = ve / 9.80665; // specific impulse - asume gravity 9.8 m/s
+Veq = Ve + (pe - p0) * Ae / mdot
+
+isp = veq / 9.80665;
 
 tsum = tt + tc; // find average tempurature
 tavg = tsum / 2;
 
 //print
-disp("AREA THROAT {in mm}")
-disp(at)
-disp("AREA EXHAUST {in mm}")
-disp(ae)
-disp("MACH SPEED THROAT {calculated}")
-disp(mt)
+disp("!!G I V E N S!!")
+disp("Specific Heat {Kj/Mol}")
+disp(h)
+disp("Combustion Chamber Temp {K}}")
+disp(tc)
 
+disp("-----")
+disp("!!E S T I M A T E D!!")
+disp("Combustion Chamber Presure {bar}")
+disp(pc)
+disp("Combustion Chamber Volume  {L}")
+disp(vcc)
+disp("Ambiant Pressures {bar}")
+disp(pa)
+
+disp("-----")
+disp("!!C A L C U L A T E D!!")
+disp("AREA THROAT {mm}")
+disp(at)
+disp("PRESSURE EXHAUST {bar}")
+disp(pe)
+disp("AREA EXHAUST {mm}")
+disp(ae)
+disp("MACH SPEED THROAT")
+disp(mt)
+disp("EXHAUST VELOCITY {m/sec}")
+disp(ve)
 disp("MACH SPEED EXHAUST")
 disp(me)
-
 disp("MASS FLOW RATE {kg/s}")
 disp(mdot)
-disp("ESTIMATED SPECIFIC IMPULSE {s/kg}")
+disp("SPECIFIC IMPULSE {sec}")
 disp(isp)
-
-disp("ESTIMATED OPERATING TEMPS {K}")
+disp("AVG. OPERATING TEMPS {K}")
 disp(tavg)
 
