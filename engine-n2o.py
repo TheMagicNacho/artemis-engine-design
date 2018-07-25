@@ -9,49 +9,53 @@ import math
 import cmath
 
 #User Defined Variables
-h = 4686.79  #Specific Heat (Kj/Mol) AKA Enthalpy
-tc = 673.504 #Combustion Chamber Temp (K) - derived from abdatic
-pc = 25 #Combustion Chamber Presure (bar) - based on research from S. Krishnan1*, Ahn Sang-Hee2, Lee Choong-Won2
+H = 4686.79  #Specific Heat (Kj/Mol) AKA Enthalpy
+Tc = 673.504 #Combustion Chamber Temp (K) - derived from abdatic
+Pc = 25 #Combustion Chamber Presure (bar) - based on research from S. Krishnan1*, Ahn Sang-Hee2, Lee Choong-Won2
 vcc = 2 #Combustion Chamber Volume  (L) - guessed size of rocket
 payload = 2 # in kg
-pa = 10 #ambiant presure - estimated combustion of
+Pa = 10 #ambiant presure - estimated combustion of
 n = 230 #Number of moles from combustion product
 
 #Initial Calculations
 cstar = 903.5 #constant of compressability
-pe = (n * 0.08205 / vcc) * tc  #exhaust presure - assumes ideal gas constant
-r = h / (tc+258) #specific heat ratio
-fr = (payload * 20) * ( 76000.00 + 9.80665) # force required in Newtons
+Pe = (n * 0.08205 / vcc) * Tc  #exhaust presure - assumes ideal gas constant
+r = H / (Tc+258) #specific heat ratio
+Fr = (payload * 20) * ( 76000.00 + 9.80665) # force required in Newtons
 
 #Throat
-tt = tc * (2/h+1) #throat temp (K)
-pt = pc * (2/h+1) ** (h/(h-1)) #presure (bar)
-dt = pt / (r*tt)  #density
-vt = math.sqrt(r*0.08205*tt) #Velocity at throat - assumes ideal gas constant
-mt = vt / 295.26992  # throat mach number - assumes speed of sound is 295.26992 at stratosphere
-at = payload / (mt * dt)
+Tt = Tc * (2/H+1) #throat temp (K)
+Pt = Pc * (2/H+1) ** (H/(H-1)) #presure (bar)
+Dt = Pt / (r*Tt)  #density
+Vt = math.sqrt(r*0.08205*Tt) #Velocity at throat - assumes ideal gas constant
+mt = Vt / 295.26992  # throat mach number - assumes speed of sound is 295.26992 at stratosphere
+At = payload / (mt * Dt)
 
 #coefficents
-aco = ((1 + mt**(2) * (r-1)/2)**(r+1)/(r-1)/2) * (((r+1)/2) ** -((r+1)/(r-1)/2)) / mt
-#cf = h * math.sqrt( math.pow(2/h+1, (h+1)/(h-1)) / (h-1)) * (2/(h-1)) * math.pow(1-(pe /pc), (h-1))  + ((pe-pa)/pc) * aco # thrust coifficent
-#t = vt * mdot;
+
+Aco = (math.pow (1 + mt**2 * (r-1)/2,((r+1)/(r-1)/2)) * math.pow ((r+1)/2, -((r+1)/(r-1)/2))) / mt
+
+#t = Vt * mdot;
 
 
 #exhaust
-ae = at * math.sqrt(aco) # area of exhaust diameter (MM)
-te = tc / (1+((h-1)/2)*vt**2)  #Temp
-de = pe / (r*te)  #desnsity
-cf = cmath.sqrt( ((2 * 1.66 ** 2) / (1.66-1)) * math.pow((2 / 1.66 + 1), (1.66+1 / 1.66-1)) * (1 - math.pow (pe-pc, (1.66-1 / 1.66))) ) + (pe + pa) * ae
+Ae = At * math.sqrt(Aco) # area of exhaust diameter (MM)
+Te = Tc / (1+((H-1)/2)*Vt**2)  #exhaust Temp in k
+De = Pe / (r*Te)  #desnsity
+#cf = cmath.sqrt( ((2 * 1.66 ** 2) / (1.66-1)) * math.pow((2 / 1.66 + 1), (1.66+1 / 1.66-1)) * (1 - math.pow (Pe-Pc, (1.66-1 / 1.66))) ) + (Pe + Pa) * Ae
+#cf = H*cmath.sqrt( math.pow(2/H+1, (H+1)/(H-1))*(2/(H-1))*math.pow(1-(Pe/Pc),((H-1)/H)))+((Pe-Pa)/Pc)*Aco #thrust coifficent
+cf = Fr / At * Pc# thrust coifficent
 
-#finals
-ve = cmath.sqrt(cf * cstar) #velocity at exit
-mdot = (pc * at) / cstar #mass flow rate
-ve = cmath.sqrt(cf * cstar) #velocity at exit
-me = ve / 295.26992; # exhaust mach number - assumes speed of sound is 295.26992 at stratosphere
-isp = ve / 9.80665 #specific impulse - asume gravity 9.8 m/s
+
+#final
+Ve = math.sqrt(cf * cstar) #velocity at exit
+mdot = (Pc * At) / cstar #mass flow rate
+Ve = math.sqrt(cf * cstar) #velocity at exit
+Me = Ve / 295.26992; # exhaust mach number - assumes speed of sound is 295.26992 at stratosphere
+isp = Ve / 9.80665 #specific impulse - asume gravity 9.8 m/s
 #isp = (mdot*9.80665) / 1961.33
-tsum = tt + tc #sum of temp to find average
-tavg = tsum / 2 # avg temp
+Tsum = Tt + Tc #sum of temp to find average
+Tavg = Tsum / 2 # avg temp
 
 
 
@@ -59,26 +63,22 @@ tavg = tsum / 2 # avg temp
 print("")
 print("-------ENGINE CALCULATIONS-------")
 print("USER DEFINED VARIABLES")
-print "Specific Heat:", h
-print "Combustion Chamber Tem (k):", tc
-print "Combustion Chamber Pressure (bar):", pc
+print "Specific Heat:", H
+print "Combustion Chamber Tem (k):", Tc
+print "Combustion Chamber Pressure (bar):", Pc
 print "Combustion Chamber Volume (l):", vcc
-print "Ambiant Pressure (bar):", pa
+print "Ambiant Pressure (bar):", Pa
 print("--------------")
 print ("ENGINE DESIGNS")
-print "Diameter of Throat (mm)", at
-print "Diameter of Exit (mm)", ae
+print "Diameter of Throat (mm)", At
+print "Diameter of Exit (mm)", Ae
 print("--------------")
 print("THEORETICAL SPECS")
-print "Throat Temp (k):", tt
-print "Exhaust Temp (k):", te
-print "Average Operating Temps (k)", tavg
+print "Average Operating Temps (k)", Tavg
 print("")
-print "Throat Velocity (m/s):", vt
-print "Exit Velocity (m/s):", ve
-print "Exit Mach:", me
+print "Throat Velocity (m/s):", Vt
+print "Exit Velocity (m/s):", Ve
+print "Exit Mach:", Me
 print ("")
 print "Mass Flow Rate (kg/s)", mdot
 print "Specific Impulse (sec)", isp
-
-print "ACO", aco
