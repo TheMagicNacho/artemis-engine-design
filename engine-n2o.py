@@ -29,7 +29,7 @@ pt = pc * (2/h+1) ** (h/(h-1)) #presure (bar)
 dt = pt / (r*tt)  #density
 vt = math.sqrt(r*0.08205*tt) #Velocity at throat - assumes ideal gas constant
 mt = vt / 295.26992  # throat mach number - assumes speed of sound is 295.26992 at stratosphere
-at = fr / (mt * dt)
+at = payload / (mt * dt)
 
 #coefficents
 aco = ((1 + mt**(2) * (r-1)/2)**(r+1)/(r-1)/2) * (((r+1)/2) ** -((r+1)/(r-1)/2)) / mt
@@ -38,7 +38,7 @@ aco = ((1 + mt**(2) * (r-1)/2)**(r+1)/(r-1)/2) * (((r+1)/2) ** -((r+1)/(r-1)/2))
 
 
 #exhaust
-ae = at * cmath.sqrt(aco) # area of exhaust diameter (MM)
+ae = at * math.sqrt(aco) # area of exhaust diameter (MM)
 te = tc / (1+((h-1)/2)*vt**2)  #Temp
 de = pe / (r*te)  #desnsity
 cf = cmath.sqrt( ((2 * 1.66 ** 2) / (1.66-1)) * math.pow((2 / 1.66 + 1), (1.66+1 / 1.66-1)) * (1 - math.pow (pe-pc, (1.66-1 / 1.66))) ) + (pe + pa) * ae
@@ -80,3 +80,5 @@ print "Exit Mach:", me
 print ("")
 print "Mass Flow Rate (kg/s)", mdot
 print "Specific Impulse (sec)", isp
+
+print "ACO", aco
