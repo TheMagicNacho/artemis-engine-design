@@ -82,3 +82,4 @@ print "Exit Mach:", Me
 print ("")
 print "Mass Flow Rate (kg/s)", mdot
 print "Specific Impulse (sec)", isp
+print "Area Coeficent:", Aco
