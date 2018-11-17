@@ -70,8 +70,8 @@ print "Combustion Chamber Volume (l):", vcc
 print "Ambiant Pressure (bar):", Pa
 print("--------------")
 print ("ENGINE DESIGNS")
-print "Diameter of Throat (mm)", At
-print "Diameter of Exit (mm)", Ae
+print "Area of Throat (mm)", At
+print "Area of Exit (mm)", Ae
 print("--------------")
 print("THEORETICAL SPECS")
 print "Average Operating Temps (k)", Tavg
