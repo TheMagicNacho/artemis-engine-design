@@ -1,4 +1,4 @@
-#---NOTES---
+ #---NOTES---
 # Dt = Density of Gas at Throat
 # Acof = Area of Exhaust / Area of Throat
 # Reff.  Development of Hydrogen Peroxide Monopropellant Rocket  by Cervone et al
@@ -63,23 +63,23 @@ Tavg = Tsum / 2 # avg temp
 print("")
 print("-------ENGINE CALCULATIONS-------")
 print("USER DEFINED VARIABLES")
-print "Specific Heat:", H
-print "Combustion Chamber Tem (k):", Tc
-print "Combustion Chamber Pressure (bar):", Pc
-print "Combustion Chamber Volume (l):", vcc
-print "Ambiant Pressure (bar):", Pa
+print("Specific Heat:", H)
+print("Combustion Chamber Tem (k):", Tc)
+print("Combustion Chamber Pressure (bar):", Pc)
+print("Combustion Chamber Volume (l):", vcc)
+print("Ambiant Pressure (bar):", Pa)
 print("--------------")
 print ("ENGINE DESIGNS")
-print "Area of Throat (mm)", At
-print "Area of Exit (mm)", Ae
+print ("Area of Throat (mm)", At)
+print("Area of Exit (mm)", Ae)
 print("--------------")
 print("THEORETICAL SPECS")
-print "Average Operating Temps (k)", Tavg
+print("Average Operating Temps (k)", Tavg)
 print("")
-print "Throat Velocity (m/s):", Vt
-print "Exit Velocity (m/s):", Ve
-print "Exit Mach:", Me
+print("Throat Velocity (m/s):", Vt)
+print("Exit Velocity (m/s):", Ve)
+print("Exit Mach:", Me)
 print ("")
-print "Mass Flow Rate (kg/s)", mdot
-print "Specific Impulse (sec)", isp
-print "Area Coeficent:", Aco
+print("Mass Flow Rate (kg/s)", mdot)
+print("Specific Impulse (sec)", isp)
+print("Area Coeficent:", Aco)
